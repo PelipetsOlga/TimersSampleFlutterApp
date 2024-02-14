@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'di/di.dart';
+
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  initDI();
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
