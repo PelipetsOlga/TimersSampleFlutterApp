@@ -4,15 +4,15 @@ import 'project.dart';
 import 'time_sheet_record.dart';
 import 'user.dart';
 
-class TimeSheet extends Equatable {
-  TimeSheet(this.id, this.user, this.project, this.favourite, this.timeRecord,
+class TimeSheetModel extends Equatable {
+  TimeSheetModel(this.id, this.user, this.project, this.favourite, this.timeRecord,
       this.inProgress);
 
   final int id;
-  final User user;
-  final Project project;
+  final UserModel user;
+  final ProjectModel project;
   final bool favourite;
-  final TimeRecord timeRecord;
+  final TimeRecordModel timeRecord;
   bool inProgress;
 
   @override

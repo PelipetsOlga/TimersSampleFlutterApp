@@ -16,7 +16,7 @@ class TimersRepositoryImpl implements TimersRepository {
   TimersRepositoryImpl(this.api, this.authRepository);
 
   @override
-  Future<Either<Error, List<Project>>> getAllProjects(
+  Future<Either<Error, List<ProjectModel>>> getAllProjects(
       bool onlyFavourites) async {
     return const Left(UnimplementedError());
   }
@@ -27,17 +27,17 @@ class TimersRepositoryImpl implements TimersRepository {
   }
 
   @override
-  Future<Either<Error, List<TimeSheet>>> getAllTimeSheets(int userId) async{
+  Future<Either<Error, List<TimeSheetModel>>> getAllTimeSheets(int userId) async{
     return const Left(UnimplementedError());
   }
 
   @override
-  Future<Either<Error, Project>> createTimeSheet(TimeSheet input) async {
+  Future<Either<Error, ProjectModel>> createTimeSheet(TimeSheetModel input) async {
     return const Left(UnimplementedError());
   }
 
   @override
-  Future<Either<Error, void>> removeTimeSheet(TimeSheet input) async {
+  Future<Either<Error, void>> removeTimeSheet(TimeSheetModel input) async {
     return const Left(UnimplementedError());
   }
 

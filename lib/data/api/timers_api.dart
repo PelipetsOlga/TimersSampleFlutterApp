@@ -1,6 +1,11 @@
+import 'package:either_dart/either.dart';
+import 'package:flutter_test_sample/data/data_utils.dart';
 import 'package:flutter_test_sample/data/models/time_sheet_request.dart';
 
 import '../models/project.dart';
+import '../models/task.dart';
+
+part 'stubs.dart';
 
 abstract class TimersApi {
   // This is Stub class instead of REST API
@@ -40,9 +45,8 @@ abstract class TimersApi {
 
 class TimersApiStub extends TimersApi {
   @override
-  Future<List<Project>> getAllProjects() {
-    // TODO: implement getAllProjects
-    throw UnimplementedError();
+  Future<List<Project>> getAllProjects() async {
+    return _projectsStub;
   }
 
   @override

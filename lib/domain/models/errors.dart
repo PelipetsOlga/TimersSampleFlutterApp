@@ -17,3 +17,7 @@ class UnimplementedError extends Error {
 class UnAuthorizedError extends Error {
   const UnAuthorizedError() : super("User should login");
 }
+
+class AuthorisationError extends Error {
+  const AuthorisationError() : super("Login or password are incorrect. Try again.");
+}

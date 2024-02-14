@@ -12,7 +12,7 @@ class Task {
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 
-  final int id;
+  final String id;
   final String title;
   final String deadline;
 

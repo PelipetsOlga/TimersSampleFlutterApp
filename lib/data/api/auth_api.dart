@@ -2,6 +2,7 @@ import 'package:flutter_test_sample/data/data_utils.dart';
 
 import '../models/user.dart';
 
+part 'auth_stubs.dart';
 
 abstract class AuthApi {
   // This is Stub class instead of REST API
@@ -14,10 +15,6 @@ abstract class AuthApi {
 class AuthApiStub extends AuthApi {
   @override
   Future<User> login(String login, String password) async {
-    return User(
-      id: generateId(),
-      firstName: "Ivan",
-      lastName: "Zhuikov",
-    );
+    return userStub;
   }
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class TimeRecord extends Equatable {
-  TimeRecord(
+class TimeRecordModel extends Equatable {
+  TimeRecordModel(
     this.id,
     this.startDate,
     this.completed,

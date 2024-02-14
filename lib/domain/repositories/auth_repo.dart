@@ -6,8 +6,8 @@ import '../../domain/models/errors.dart';
 
 abstract interface class AuthRepository {
 
-  Future<Either<Error, User>> auth(String login, String password);
+  Future<Either<Error, UserModel>> auth(String login, String password);
 
-  Future<Either<Error, User>> profile();
+  Future<Either<Error, UserModel>> profile();
 
 }

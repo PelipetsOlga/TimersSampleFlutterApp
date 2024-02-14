@@ -4,16 +4,16 @@ import 'dart:core';
 import 'task.dart';
 import 'user.dart';
 
-class Project extends Equatable {
-  Project(this.id, this.title, this.description, this.favourite, this.user,
+class ProjectModel extends Equatable {
+  ProjectModel(this.id, this.title, this.description, this.favourite, this.user,
       this.tasks);
 
   final int id;
   final String title;
   final String description;
   bool favourite;
-  final User user;
-  final List<Task> tasks;
+  final UserModel user;
+  final List<TaskModel> tasks;
 
   @override
   List<Object> get props => [id, title, description, favourite, user, tasks];

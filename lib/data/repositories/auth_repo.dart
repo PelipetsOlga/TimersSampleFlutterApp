@@ -5,21 +5,31 @@ import '../../domain/models/user.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../api/auth_api.dart';
 import '../../domain/models/errors.dart';
+import '../models/user.dart';
+
+part 'auth_mapper.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   AuthApi api;
 
   AuthRepositoryImpl(this.api);
 
-  User? cache;
+  UserModel? cache;
 
   @override
-  Future<Either<Error, User>> auth(String login, String password) async {
-    return const Left(UnimplementedError());
+  Future<Either<Error, UserModel>> auth(String login, String password) async {
+    try {
+      User user = await api.login(login, password);
+      var toDomain = _toDomain(user);
+      cache = toDomain;
+      return Right(toDomain);
+    } catch (e) {
+      return const Left(AuthorisationError());
+    }
   }
 
   @override
-  Future<Either<Error, User>> profile() async {
+  Future<Either<Error, UserModel>> profile() async {
     if (cache != null) return Right(cache!);
     return const Left(UnAuthorizedError());
   }

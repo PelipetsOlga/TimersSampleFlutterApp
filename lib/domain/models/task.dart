@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'dart:core';
 
-class Task extends Equatable {
-  const Task(
+class TaskModel extends Equatable {
+  const TaskModel(
     this.id,
     this.title,
     this.deadline,
