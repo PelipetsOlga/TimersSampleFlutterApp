@@ -1,4 +1,4 @@
-part of 'app.dart';
+part of '../app.dart';
 
 const int _backgroundColorLight =  0xFF214ECC;
 const int _backgroundColorDark =  0xFF0C1D4D;
@@ -19,11 +19,16 @@ TextTheme _textTheme = TextTheme(
 );
 
 ThemeData _lightTheme = ThemeData(
+  useMaterial3: true,
   colorScheme: const ColorScheme.dark(
     brightness: Brightness.dark,
     background: Colors.transparent,
     tertiaryContainer: Color(_backgroundColorDark),
     secondaryContainer: Color(_backgroundColorLight),
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onBackground: Colors.white,
+    onSurface: Colors.white,
   ),
   canvasColor: Colors.transparent,
   brightness: Brightness.dark,
@@ -37,11 +42,16 @@ ThemeData _lightTheme = ThemeData(
 );
 
 ThemeData _darkTheme = ThemeData(
+  useMaterial3: true,
   colorScheme: const ColorScheme.dark(
     brightness: Brightness.dark,
     background: Colors.transparent,
     tertiaryContainer: Colors.black,
     secondaryContainer: Colors.black,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onBackground: Colors.white,
+    onSurface: Colors.white,
   ),
   canvasColor: Colors.transparent,
   brightness: Brightness.dark,
