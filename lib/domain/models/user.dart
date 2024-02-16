@@ -14,3 +14,5 @@ class UserModel extends Equatable {
   @override
   List<Object> get props => [id, firstName, lastName];
 }
+
+UserModel userEmpty = const UserModel(id: "", firstName: "", lastName: "");

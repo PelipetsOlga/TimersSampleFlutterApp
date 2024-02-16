@@ -5,10 +5,16 @@ import 'task.dart';
 import 'user.dart';
 
 class ProjectModel extends Equatable {
-  ProjectModel(this.id, this.title, this.description, this.favourite, this.user,
-      this.tasks);
+  ProjectModel({
+    required this.id,
+    required this.title,
+    required this.description,
+    this.favourite = false,
+    required this.user,
+    required this.tasks,
+  });
 
-  final int id;
+  final String id;
   final String title;
   final String description;
   bool favourite;

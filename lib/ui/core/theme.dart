@@ -2,6 +2,7 @@ part of '../app.dart';
 
 const int _backgroundColorLight =  0xFF214ECC;
 const int _backgroundColorDark =  0xFF0C1D4D;
+const int _orange =  0xFFFFC629;
 
 TextTheme _textTheme = TextTheme(
   displayLarge: GoogleFonts.inter().copyWith(fontSize: 57),
@@ -29,6 +30,7 @@ ThemeData _lightTheme = ThemeData(
     onSecondary: Colors.white,
     onBackground: Colors.white,
     onSurface: Colors.white,
+    outline: Color(_orange),
   ),
   canvasColor: Colors.transparent,
   brightness: Brightness.dark,
@@ -52,6 +54,7 @@ ThemeData _darkTheme = ThemeData(
     onSecondary: Colors.white,
     onBackground: Colors.white,
     onSurface: Colors.white,
+    outline: Color(_orange),
   ),
   canvasColor: Colors.transparent,
   brightness: Brightness.dark,

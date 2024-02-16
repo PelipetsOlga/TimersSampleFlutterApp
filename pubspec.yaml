@@ -42,6 +42,7 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_native_splash: ^2.0.2
   flutter_svg: ^2.0.9
+  flutter_bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,8 @@ flutter:
      - assets/settings_selected.svg
      - assets/settings_unselected.svg
      - assets/plus_btn.svg
+     - assets/star_empty.svg
+     - assets/star_fill.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

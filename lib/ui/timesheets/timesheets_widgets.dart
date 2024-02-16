@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../widgets/menu_button.dart';
-
-Widget _plusButton = SvgPicture.asset('assets/plus_btn.svg');
 
 class TimesheetsWidget extends StatelessWidget {
   const TimesheetsWidget({super.key});

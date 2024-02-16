@@ -46,6 +46,7 @@ abstract class TimersApi {
 class TimersApiStub extends TimersApi {
   @override
   Future<List<Project>> getAllProjects() async {
+    await Future.delayed(const Duration(seconds: 2));
     return _projectsStub;
   }
 

@@ -8,6 +8,8 @@ final List<Project> _projectsStub = [
   project5,
   project6,
   project7,
+  project4,
+  project3,
 ];
 
 Task taskStub1 = Task(

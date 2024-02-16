@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'dart:core';
 
-sealed class Error extends Equatable {
-  const Error(this.msg);
+sealed class AppError extends Equatable {
+  const AppError(this.msg);
 
   final String msg;
 
@@ -10,14 +10,14 @@ sealed class Error extends Equatable {
   List<Object> get props => [msg];
 }
 
-class UnimplementedError extends Error {
+class UnimplementedError extends AppError {
   const UnimplementedError() : super("Unimplemented Error");
 }
 
-class UnAuthorizedError extends Error {
+class UnAuthorizedError extends AppError {
   const UnAuthorizedError() : super("User should login");
 }
 
-class AuthorisationError extends Error {
+class AuthorisationError extends AppError {
   const AuthorisationError() : super("Login or password are incorrect. Try again.");
 }
