@@ -39,6 +39,7 @@ dependencies:
   either_dart: 1.0.0
   get_it: 7.6.7
   json_annotation: ^4.8.1
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
