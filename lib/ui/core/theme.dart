@@ -7,7 +7,7 @@ TextTheme _textTheme = TextTheme(
   displayLarge: GoogleFonts.inter().copyWith(fontSize: 57),
   displayMedium: GoogleFonts.inter().copyWith(fontSize: 45),
   displaySmall: GoogleFonts.inter().copyWith(fontSize: 36),
-  headlineLarge: GoogleFonts.inter().copyWith(fontSize: 32),
+  headlineLarge: GoogleFonts.inter().copyWith(fontSize: 32, fontWeight: FontWeight.bold, height: 40),
   headlineMedium: GoogleFonts.inter().copyWith(fontSize: 28),
   headlineSmall: GoogleFonts.inter().copyWith(fontSize: 24),
   titleLarge: GoogleFonts.inter().copyWith(fontSize: 22),
