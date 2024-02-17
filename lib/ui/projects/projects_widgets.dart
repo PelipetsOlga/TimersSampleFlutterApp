@@ -5,7 +5,9 @@ import 'package:flutter_test_sample/ui/projects/projects_list.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../domain/repositories/timers_repo.dart';
-import '../widgets/menu_button.dart';
+import '../widgets/empty_widget.dart';
+import '../widgets/loading.dart';
+import '../widgets/error_widget.dart';
 
 class ProjectsWidget extends StatelessWidget {
   const ProjectsWidget({super.key});
@@ -34,10 +36,10 @@ class _ProjectsContentWidget extends StatelessWidget {
     context.read<ProjectsBloc>().add(ProjectsRefresh());
     return BlocBuilder<ProjectsBloc, ProjectsState>(builder: (context, state) {
       return switch (state) {
-        ProjectsInitial() => const Text('Initial state'),
-        ProjectsLoading() => const Text('Loading'),
-        ProjectsError() => Text("Error ${state.errorMessage}"),
-        ProjectsEmptyLoaded() => const Text("Loaded 0 items"),
+        ProjectsInitial() => const Center(),
+        ProjectsLoading() => const LoadingIndicator(),
+        ProjectsError() => ErrorCenterWidget(state.errorMessage),
+        ProjectsEmptyLoaded() => EmptyContentWidget.emptyProjects((){}),
         ProjectsLoaded() => ProjectsListWidget(state.projects)
       };
     });

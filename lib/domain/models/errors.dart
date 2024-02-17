@@ -21,3 +21,7 @@ class UnAuthorizedError extends AppError {
 class AuthorisationError extends AppError {
   const AuthorisationError() : super("Login or password are incorrect. Try again.");
 }
+
+class NetworkError extends AppError {
+  const NetworkError() : super("Ooops... Something happens. Try again later.");
+}

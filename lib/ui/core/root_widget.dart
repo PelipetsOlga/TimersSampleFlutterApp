@@ -26,7 +26,7 @@ class _RootWidgetState extends State<RootWidget> {
             end: Alignment.bottomCenter,
             colors: <Color>[
               Theme.of(context).colorScheme.tertiaryContainer,
-              Theme.of(context).colorScheme.secondaryContainer,
+              Theme.of(context).colorScheme.onTertiaryContainer,
             ]),
       ),
       child: Scaffold(

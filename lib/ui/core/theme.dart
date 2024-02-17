@@ -1,36 +1,44 @@
 part of '../app.dart';
 
-const int _backgroundColorLight =  0xFF214ECC;
-const int _backgroundColorDark =  0xFF0C1D4D;
-const int _orange =  0xFFFFC629;
+const int _backgroundColorLight = 0xFF214ECC;
+const int _backgroundColorDark = 0xFF0C1D4D;
+const int _orange = 0xFFFFC629;
+const int _error = 0xFFFF7E7E;
 
 TextTheme _textTheme = TextTheme(
   displayLarge: GoogleFonts.inter().copyWith(fontSize: 57),
   displayMedium: GoogleFonts.inter().copyWith(fontSize: 45),
   displaySmall: GoogleFonts.inter().copyWith(fontSize: 36),
-  headlineLarge: GoogleFonts.inter().copyWith(fontSize: 32, fontWeight: FontWeight.bold, height: 40),
-  headlineMedium: GoogleFonts.inter().copyWith(fontSize: 28),
+  headlineLarge: GoogleFonts.inter()
+      .copyWith(fontSize: 32, fontWeight: FontWeight.bold, height: 40),
+  headlineMedium:
+      GoogleFonts.inter().copyWith(fontSize: 28, fontWeight: FontWeight.bold),
   headlineSmall: GoogleFonts.inter().copyWith(fontSize: 24),
   titleLarge: GoogleFonts.inter().copyWith(fontSize: 22),
   titleMedium: GoogleFonts.inter().copyWith(fontSize: 16, letterSpacing: 0.15),
   titleSmall: GoogleFonts.inter().copyWith(fontSize: 14, letterSpacing: 0.1),
-  labelLarge: GoogleFonts.roboto().copyWith(fontSize: 14, letterSpacing: 0.1),
-  labelMedium: GoogleFonts.roboto().copyWith(fontSize: 12, letterSpacing: 0.5),
-  labelSmall: GoogleFonts.roboto().copyWith(fontSize: 11, letterSpacing: 0.5),
+  bodyLarge: GoogleFonts.inter().copyWith(fontSize: 16),
+  bodyMedium: GoogleFonts.inter().copyWith(fontSize: 14),
+  bodySmall: GoogleFonts.inter().copyWith(fontSize: 12),
+  labelLarge: GoogleFonts.roboto().copyWith(fontSize: 14),
+  labelMedium: GoogleFonts.roboto().copyWith(fontSize: 12),
+  labelSmall: GoogleFonts.roboto().copyWith(fontSize: 11),
 );
 
 ThemeData _lightTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: const ColorScheme.dark(
+  colorScheme: ColorScheme.dark(
     brightness: Brightness.dark,
     background: Colors.transparent,
-    tertiaryContainer: Color(_backgroundColorDark),
-    secondaryContainer: Color(_backgroundColorLight),
+    secondaryContainer: Colors.white.withOpacity(0.16),
+    tertiaryContainer: const Color(_backgroundColorDark),
+    onTertiaryContainer: const Color(_backgroundColorLight),
     onPrimary: Colors.white,
     onSecondary: Colors.white,
     onBackground: Colors.white,
     onSurface: Colors.white,
-    outline: Color(_orange),
+    outline: const Color(_orange),
+    error: const Color(_error),
   ),
   canvasColor: Colors.transparent,
   brightness: Brightness.dark,
@@ -41,20 +49,23 @@ ThemeData _lightTheme = ThemeData(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Color(_backgroundColorDark),
       )),
+  elevatedButtonTheme: _elevatedButtonTheme,
 );
 
 ThemeData _darkTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: const ColorScheme.dark(
+  colorScheme: ColorScheme.dark(
     brightness: Brightness.dark,
     background: Colors.transparent,
+    secondaryContainer: Colors.white.withOpacity(0.16),
     tertiaryContainer: Colors.black,
-    secondaryContainer: Colors.black,
+    onTertiaryContainer: Colors.black,
     onPrimary: Colors.white,
     onSecondary: Colors.white,
     onBackground: Colors.white,
     onSurface: Colors.white,
-    outline: Color(_orange),
+    outline: const Color(_orange),
+    error: const Color(_error),
   ),
   canvasColor: Colors.transparent,
   brightness: Brightness.dark,
@@ -65,4 +76,18 @@ ThemeData _darkTheme = ThemeData(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.black,
       )),
+  elevatedButtonTheme: _elevatedButtonTheme,
+);
+
+var _elevatedButtonTheme = ElevatedButtonThemeData(
+  style: ElevatedButton.styleFrom(
+      elevation: 0,
+      primary: Colors.white.withOpacity(0.16),
+      onPrimary: Colors.white,
+      foregroundColor: Colors.white.withOpacity(0.16),
+      backgroundColor: Colors.white.withOpacity(0.16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+      ),
+  ),
 );

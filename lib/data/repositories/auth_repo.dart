@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<AppError, UserModel>> auth(String login, String password) async {
     try {
       User user = await api.login(login, password);
-      var toDomain = _toDomain(user);
+      var toDomain = _toUserDomain(user);
       cache = toDomain;
       return Right(toDomain);
     } catch (e) {

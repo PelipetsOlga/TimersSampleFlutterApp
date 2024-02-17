@@ -5,9 +5,9 @@ String _plusButton = 'assets/plus_btn.svg';
 
 class MenuButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  String icon;
+  final String icon;
 
-  MenuButton({required this.icon, this.onPressed, super.key});
+  const MenuButton({required this.icon, this.onPressed, super.key});
 
   MenuButton.plus({this.onPressed, super.key}) : icon = _plusButton;
 

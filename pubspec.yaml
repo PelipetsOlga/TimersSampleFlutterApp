@@ -79,6 +79,9 @@ flutter:
      - assets/plus_btn.svg
      - assets/star_empty.svg
      - assets/star_fill.svg
+     - assets/favourites_empty.svg
+     - assets/timesheets_empty.svg
+     - assets/projects_empty.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

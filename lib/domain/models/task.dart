@@ -8,7 +8,7 @@ class TaskModel extends Equatable {
     this.deadline,
   );
 
-  final int id;
+  final String id;
   final String title;
   final String deadline;
 

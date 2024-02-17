@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:flutter_test_sample/domain/models/task.dart';
 import 'package:flutter_test_sample/domain/models/time_sheet.dart';
 import 'dart:async';
 
@@ -9,6 +10,7 @@ import '../../domain/repositories/timers_repo.dart';
 import '../api/timers_api.dart';
 import '../../domain/models/errors.dart';
 import '../models/project.dart';
+import '../models/task.dart';
 
 part 'timers_mapper.dart';
 
@@ -23,9 +25,9 @@ class TimersRepositoryImpl implements TimersRepository {
       bool onlyFavourites) async {
     try {
       List<Project> projects = await api.getAllProjects();
-      return Right(projects.map((e) => _toDomain(e)).toList());
+      return Right(projects.map((e) => _toProjectDomain(e)).toList());
     } catch (e) {
-      return const Left(AuthorisationError());
+      return const Left(NetworkError());
     }
   }
 

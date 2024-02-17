@@ -1,4 +1,3 @@
-import 'package:either_dart/either.dart';
 import 'package:flutter_test_sample/data/data_utils.dart';
 import 'package:flutter_test_sample/data/models/time_sheet_request.dart';
 
@@ -47,7 +46,7 @@ class TimersApiStub extends TimersApi {
   @override
   Future<List<Project>> getAllProjects() async {
     await Future.delayed(const Duration(seconds: 2));
-    return _projectsStub;
+    return [];
   }
 
   @override
