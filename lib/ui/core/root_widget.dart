@@ -19,35 +19,24 @@ class _RootWidgetState extends State<RootWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: <Color>[
-              Theme.of(context).colorScheme.tertiaryContainer,
-              Theme.of(context).colorScheme.onTertiaryContainer,
-            ]),
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        indicatorColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        selectedIndex: currentPageIndex,
+        destinations: _destinations,
       ),
-      child: Scaffold(
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          indicatorColor: Colors.transparent,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          selectedIndex: currentPageIndex,
-          destinations: _destinations,
-        ),
-        body: <Widget>[
-          const TimesheetsRootWidget(),
-          const ProjectsRootWidget(),
-          const SettingsWidget(),
-        ][currentPageIndex],
-      ),
+      body: <Widget>[
+        const TimesheetsRootWidget(),
+        const ProjectsRootWidget(),
+        const SettingsWidget(),
+      ][currentPageIndex],
     );
   }
 }

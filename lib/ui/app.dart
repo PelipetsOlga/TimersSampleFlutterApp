@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_test_sample/ui/timesheet_create/create_timesheet.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'core/root_widget.dart';
+import 'theme_wrapper_widget.dart';
+
 part 'core/theme.dart';
+part 'navigation.dart';
 
 class AppTheme extends StatefulWidget {
-  Widget childWidget;
+  const AppTheme({super.key});
 
-  AppTheme({super.key, required this.childWidget});
 
   @override
   State<AppTheme> createState() => _AppThemeState();
@@ -30,12 +35,12 @@ class _AppThemeState extends State<AppTheme> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _router,
       debugShowCheckedModeBanner: false,
       themeMode: themeMode,
       theme: _lightTheme,
       darkTheme: _darkTheme,
-      home: widget.childWidget,
     );
   }
 }
