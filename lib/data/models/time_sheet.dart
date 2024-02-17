@@ -10,7 +10,7 @@ part 'time_sheet.g.dart';
 class TimeSheet {
   TimeSheet({
     required this.id,
-    required this.user,
+    required this.userId,
     required this.project,
     required this.favourite,
     required this.timeRecord,
@@ -20,8 +20,8 @@ class TimeSheet {
   factory TimeSheet.fromJson(Map<String, dynamic> json) =>
       _$TimeSheetFromJson(json);
 
-  final int id;
-  final User user;
+  final String id;
+  final String userId;
   final Project project;
   final bool favourite;
   final TimeRecord timeRecord;

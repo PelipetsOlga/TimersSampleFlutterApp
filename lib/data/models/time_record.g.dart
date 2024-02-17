@@ -7,8 +7,9 @@ part of 'time_record.dart';
 // **************************************************************************
 
 TimeRecord _$TimeRecordFromJson(Map<String, dynamic> json) => TimeRecord(
-      id: json['id'] as int,
+      id: json['id'] as String,
       startDate: json['startDate'] as int,
+      deadline: json['deadline'] as int,
       completed: json['completed'] as bool,
       durationExpected: json['durationExpected'] as int,
       durationActual: json['durationActual'] as int,
@@ -18,6 +19,7 @@ Map<String, dynamic> _$TimeRecordToJson(TimeRecord instance) =>
     <String, dynamic>{
       'id': instance.id,
       'startDate': instance.startDate,
+      'deadline': instance.deadline,
       'completed': instance.completed,
       'durationExpected': instance.durationExpected,
       'durationActual': instance.durationActual,

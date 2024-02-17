@@ -7,8 +7,8 @@ part of 'time_sheet.dart';
 // **************************************************************************
 
 TimeSheet _$TimeSheetFromJson(Map<String, dynamic> json) => TimeSheet(
-      id: json['id'] as int,
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
+      id: json['id'] as String,
+      userId: json['userId'] as String,
       project: Project.fromJson(json['project'] as Map<String, dynamic>),
       favourite: json['favourite'] as bool,
       timeRecord:
@@ -18,7 +18,7 @@ TimeSheet _$TimeSheetFromJson(Map<String, dynamic> json) => TimeSheet(
 
 Map<String, dynamic> _$TimeSheetToJson(TimeSheet instance) => <String, dynamic>{
       'id': instance.id,
-      'user': instance.user,
+      'userId': instance.userId,
       'project': instance.project,
       'favourite': instance.favourite,
       'timeRecord': instance.timeRecord,

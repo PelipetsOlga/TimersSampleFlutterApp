@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../projects/projects_widgets.dart';
+import '../projects/projects_root_widgets.dart';
 import '../settings/settings_widgets.dart';
-import '../timesheets/timesheets_widgets.dart';
+import '../timesheets/timesheets_root_widget.dart';
 
 part 'nav_bar_widget.dart';
 
@@ -43,8 +43,8 @@ class _RootWidgetState extends State<RootWidget> {
           destinations: _destinations,
         ),
         body: <Widget>[
-          const TimesheetsWidget(),
-          const ProjectsWidget(),
+          const TimesheetsRootWidget(),
+          const ProjectsRootWidget(),
           const SettingsWidget(),
         ][currentPageIndex],
       ),

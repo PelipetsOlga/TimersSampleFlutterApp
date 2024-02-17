@@ -7,6 +7,7 @@ class TimeRecord {
   TimeRecord({
     required this.id,
     required this.startDate,
+    required this.deadline,
     required this.completed,
     required this.durationExpected,
     required this.durationActual,
@@ -15,8 +16,9 @@ class TimeRecord {
   factory TimeRecord.fromJson(Map<String, dynamic> json) =>
       _$TimeRecordFromJson(json);
 
-  final int id;
+  final String id;
   final int startDate;
+  final int deadline;
   final bool completed;
   final int durationExpected;
   final int durationActual;

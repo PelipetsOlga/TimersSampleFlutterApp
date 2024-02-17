@@ -1,4 +1,6 @@
 import 'package:flutter_test_sample/data/data_utils.dart';
+import 'package:flutter_test_sample/data/models/time_record.dart';
+import 'package:flutter_test_sample/data/models/time_sheet.dart';
 import 'package:flutter_test_sample/data/models/time_sheet_request.dart';
 
 import '../models/project.dart';
@@ -21,10 +23,10 @@ abstract class TimersApi {
   });
 
   // HTTP GET
-  Future<List<Project>> getAllTimeSheets(int userId);
+  Future<List<TimeSheet>> getAllTimeSheets(String userId);
 
   // HTTP POST
-  Future<Project> createTimeSheet(TimeSheetRequest input);
+  Future<TimeSheet> createTimeSheet(TimeSheetRequest input);
 
   // HTTP DELETE
   Future<void> removeTimeSheet(int timesheetId);
@@ -45,8 +47,8 @@ abstract class TimersApi {
 class TimersApiStub extends TimersApi {
   @override
   Future<List<Project>> getAllProjects() async {
-    await Future.delayed(const Duration(seconds: 2));
-    return [];
+    await Future.delayed(const Duration(seconds: 1));
+    return _projectsStub;
   }
 
   @override
@@ -57,7 +59,7 @@ class TimersApiStub extends TimersApi {
   }
 
   @override
-  Future<Project> createTimeSheet(TimeSheetRequest input) {
+  Future<TimeSheet> createTimeSheet(TimeSheetRequest input) {
     // TODO: implement createTimeSheet
     throw UnimplementedError();
   }
@@ -94,8 +96,8 @@ class TimersApiStub extends TimersApi {
   }
 
   @override
-  Future<List<Project>> getAllTimeSheets(int userId) {
-    // TODO: implement getAllTimeSheets
-    throw UnimplementedError();
+  Future<List<TimeSheet>> getAllTimeSheets(String userId) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return [timeSheet1, timeSheet2, timeSheet3, timeSheet4];
   }
 }

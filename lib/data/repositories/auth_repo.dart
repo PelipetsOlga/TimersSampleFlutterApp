@@ -17,7 +17,8 @@ class AuthRepositoryImpl implements AuthRepository {
   UserModel? cache;
 
   @override
-  Future<Either<AppError, UserModel>> auth(String login, String password) async {
+  Future<Either<AppError, UserModel>> auth(
+      String login, String password) async {
     try {
       User user = await api.login(login, password);
       var toDomain = _toUserDomain(user);
@@ -29,8 +30,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<AppError, UserModel>> profile() async {
-    if (cache != null) return Right(cache!);
-    return const Left(UnAuthorizedError());
+  UserModel profile() {
+    return userEmpty; //TODO Add auth
+    if (cache == null) throw Exception("Anauthorised");
+    return cache!;
   }
 }

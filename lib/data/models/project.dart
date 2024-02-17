@@ -9,6 +9,7 @@ class Project {
   Project({
     required this.id,
     required this.title,
+    required this.number,
     required this.description,
     required this.favourite,
     required this.userId,
@@ -20,6 +21,7 @@ class Project {
 
   final String id;
   final String title;
+  final String number;
   final String description;
   final bool favourite;
   final String userId;

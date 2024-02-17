@@ -1,21 +1,26 @@
 import 'package:equatable/equatable.dart';
 
-import 'project.dart';
+import '../../data/models/project.dart';
 import 'time_sheet_record.dart';
-import 'user.dart';
 
 class TimeSheetModel extends Equatable {
-  TimeSheetModel(this.id, this.user, this.project, this.favourite, this.timeRecord,
-      this.inProgress);
+  TimeSheetModel({
+    required this.id,
+    required this.userId,
+    required this.project,
+    required this.favourite,
+    required this.timeRecord,
+    required this.inProgress,
+  });
 
-  final int id;
-  final UserModel user;
-  final ProjectModel project;
-  final bool favourite;
+  final String id;
+  final String userId;
+  final Project project;
+  bool favourite;
   final TimeRecordModel timeRecord;
   bool inProgress;
 
   @override
   List<Object> get props =>
-      [id, user, project, favourite, timeRecord, inProgress];
+      [id, userId, project, favourite, timeRecord, inProgress];
 }

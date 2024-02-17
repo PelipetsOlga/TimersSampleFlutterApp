@@ -1,21 +1,23 @@
 import 'package:equatable/equatable.dart';
 
 class TimeRecordModel extends Equatable {
-  TimeRecordModel(
-    this.id,
-    this.startDate,
-    this.completed,
-    this.durationExpected,
-    this.durationActual,
-  );
+  TimeRecordModel({
+    required this.id,
+    required this.startDate,
+    required this.deadline,
+    required this.completed,
+    required this.durationExpected,
+    required this.durationActual,
+  });
 
-  final int id;
+  final String id;
   final int startDate;
+  final int deadline;
   bool completed;
   final int durationExpected;
   int durationActual;
 
   @override
   List<Object> get props =>
-      [id, startDate, completed, durationExpected, durationActual];
+      [id, startDate, deadline, completed, durationExpected, durationActual];
 }

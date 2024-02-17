@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../domain/models/project.dart';
 import '../widgets/accent_border.dart';
+import '../widgets/star_checkbox.dart';
+import 'projects_bloc/bloc.dart';
 
 class ProjectsListWidget extends StatelessWidget {
   final List<ProjectModel> projects;
@@ -48,11 +50,17 @@ class ProjectWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(children: [
-                        SvgPicture.asset("assets/star_empty.svg"),
+                        StarCheckbox(
+                          isChecked: project.favourite,
+                          onChange: (value) {
+                            context.read<ProjectsBloc>().add(ProjectLike(
+                                projectId: project.id, like: value));
+                          },
+                        ),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            project.title,
+                            "${project.number}: ${project.title}",
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ),
