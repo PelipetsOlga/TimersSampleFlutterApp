@@ -20,24 +20,43 @@ class ProjectsRootWidget extends StatelessWidget {
               GetIt.instance.get<TimersRepository>(),
               GetIt.instance.get<AuthRepository>(),
             ),
-        child: Scaffold(
-            appBar: AppBar(
-              centerTitle: false,
-              title: Text(
-                "Projects",
-                style: Theme.of(context).textTheme.headlineLarge,
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+              appBar: AppBar(
+                centerTitle: false,
+                title: Text(
+                  "Projects",
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                bottom: TabBar(
+                  indicatorColor: Colors.white,
+                  tabs: [
+                    Tab(
+                        icon: Text("Odoo",
+                            style: Theme.of(context).textTheme.labelLarge)),
+                    Tab(
+                        icon: Text("Favorites",
+                            style: Theme.of(context).textTheme.labelLarge)),
+                  ],
+                ),
               ),
-            ),
-            body: const _ProjectsContentWidget()));
+              body: const TabBarView(children: [
+                _ProjectsContentWidget(false),
+                _ProjectsContentWidget(true)
+              ])),
+        ));
   }
 }
 
 class _ProjectsContentWidget extends StatelessWidget {
-  const _ProjectsContentWidget();
+  final bool favourites;
+
+  const _ProjectsContentWidget(this.favourites);
 
   @override
   Widget build(BuildContext context) {
-    context.read<ProjectsBloc>().add(ProjectsRefresh());
+    context.read<ProjectsBloc>().add(ProjectsRefresh(favorites: favourites));
     return BlocBuilder<ProjectsBloc, ProjectsState>(builder: (context, state) {
       return switch (state) {
         ProjectsInitial() => const Center(),

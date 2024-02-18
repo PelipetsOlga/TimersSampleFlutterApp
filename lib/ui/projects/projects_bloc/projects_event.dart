@@ -7,17 +7,24 @@ sealed class ProjectsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class ProjectsRefresh extends ProjectsEvent {}
+final class ProjectsRefresh extends ProjectsEvent {
+  bool favorites;
+
+  ProjectsRefresh({required this.favorites});
+
+  @override
+  List<Object> get props => [favorites];
+}
 
 final class ProjectLike extends ProjectsEvent {
-  String projectId;
+  ProjectModel project;
   bool like;
 
   ProjectLike({
-    required this.projectId,
+    required this.project,
     required this.like,
   });
 
   @override
-  List<Object> get props => [projectId, like];
+  List<Object> get props => [project, like];
 }

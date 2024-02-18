@@ -8,7 +8,7 @@ import '../../domain/models/errors.dart';
 abstract interface class TimersRepository {
 
   Future<Either<AppError, List<ProjectModel>>> getAllProjects(bool onlyFavourites);
-  Future<void> likeProject(bool value, String projectId);
+  Future<void> likeProject(bool value, ProjectModel project);
 
   Future<Either<AppError, List<TimeSheetModel>>> getAllTimeSheets();
   Future<void> createTimer(TimeSheetModel input);

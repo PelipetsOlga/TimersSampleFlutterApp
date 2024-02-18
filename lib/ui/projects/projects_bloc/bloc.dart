@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_sample/domain/repositories/auth_repo.dart';
 
+import '../../../data/models/project.dart';
 import '../../../domain/models/project.dart';
 import '../../../domain/models/errors.dart';
 import '../../../domain/repositories/timers_repo.dart';
@@ -21,7 +22,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
       emit(ProjectsLoading());
 
       Either<AppError, List<ProjectModel>> result =
-          await repository.getAllProjects(false);
+          await repository.getAllProjects(event.favorites);
       result.fold(
           (left) => {emit(ProjectsError(left.msg))},
           (right) => {
@@ -33,7 +34,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
 
     void mapLikeEventToState(
         ProjectLike event, Emitter<ProjectsState> emit) async {
-      await repository.likeProject(event.like, event.projectId).then((_) {
+      await repository.likeProject(event.like, event.project).then((_) {
         repository.getAllProjects(false).fold(
             (left) => {emit(ProjectsError(left.msg))},
             (right) => {

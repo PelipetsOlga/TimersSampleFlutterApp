@@ -23,11 +23,19 @@ class TimersRepositoryImpl implements TimersRepository {
   List<ProjectModel>? projectsCache;
   List<TimeSheetModel>? timesheetsCache;
 
+  List<ProjectModel> filterProjects(
+      bool favorite, List<ProjectModel> originalList) {
+    if (!favorite) {
+      return originalList;
+    }
+    return originalList.where((element) => element.favourite).toList();
+  }
+
   @override
   Future<Either<AppError, List<ProjectModel>>> getAllProjects(
       bool onlyFavourites) async {
     if (projectsCache != null) {
-      return Right(projectsCache!);
+      return Right(filterProjects(onlyFavourites, projectsCache!));
     }
     try {
       List<Project> projects = await api.getAllProjects();
@@ -40,9 +48,12 @@ class TimersRepositoryImpl implements TimersRepository {
   }
 
   @override
-  Future<void> likeProject(bool value, String projectId) async {
-    projectsCache?.firstWhere((element) => element.id == projectId).favourite =
-        value;
+  Future<void> likeProject(bool value, ProjectModel project) async {
+    projectsCache
+        ?.firstWhere((element) => (element.id == project.id &&
+            element.title == project.title &&
+            element.number == project.number))
+        .favourite = value;
   }
 
   @override
@@ -62,8 +73,7 @@ class TimersRepositoryImpl implements TimersRepository {
   }
 
   @override
-  Future<void> createTimer(
-      TimeSheetModel input) async {
+  Future<void> createTimer(TimeSheetModel input) async {
     return timesheetsCache?.add(input);
   }
 
@@ -73,9 +83,10 @@ class TimersRepositoryImpl implements TimersRepository {
   }
 
   @override
-  Future< void> likeTimesheet(bool value, String timesheetId) async {
-    timesheetsCache?.firstWhere((element) => element.id == timesheetId).favourite =
-        value;
+  Future<void> likeTimesheet(bool value, String timesheetId) async {
+    timesheetsCache
+        ?.firstWhere((element) => element.id == timesheetId)
+        .favourite = value;
   }
 
   @override

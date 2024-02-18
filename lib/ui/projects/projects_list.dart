@@ -54,7 +54,7 @@ class ProjectWidget extends StatelessWidget {
                           isChecked: project.favourite,
                           onChange: (value) {
                             context.read<ProjectsBloc>().add(ProjectLike(
-                                projectId: project.id, like: value));
+                                project: project, like: value));
                           },
                         ),
                         const SizedBox(width: 8),
