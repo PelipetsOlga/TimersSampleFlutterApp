@@ -19,7 +19,7 @@ final class ProjectsLoaded extends ProjectsState {
   final List<ProjectModel> projects;
 
   @override
-  List<Object> get props => [projects];
+  List<Object> get props => [projects, projects.length];
 }
 
 final class ProjectsError extends ProjectsState {

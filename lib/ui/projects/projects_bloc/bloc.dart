@@ -1,9 +1,9 @@
 import 'package:either_dart/either.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test_sample/di/di.dart';
 import 'package:flutter_test_sample/domain/repositories/auth_repo.dart';
 
-import '../../../data/models/project.dart';
 import '../../../domain/models/project.dart';
 import '../../../domain/models/errors.dart';
 import '../../../domain/repositories/timers_repo.dart';
@@ -12,7 +12,8 @@ part 'projects_state.dart';
 
 part 'projects_event.dart';
 
-class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
+class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState>
+    with ProjectsBlocFavouritesMixin, ProjectsBlocNormalMixin {
   ProjectsBloc(
     TimersRepository repository,
     AuthRepository authRepository,
@@ -22,7 +23,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
       emit(ProjectsLoading());
 
       Either<AppError, List<ProjectModel>> result =
-          await repository.getAllProjects(event.favorites);
+          await repository.getAllProjects(event.favourite);
       result.fold(
           (left) => {emit(ProjectsError(left.msg))},
           (right) => {
@@ -49,3 +50,7 @@ class ProjectsBloc extends Bloc<ProjectsEvent, ProjectsState> {
     on<ProjectLike>(mapLikeEventToState);
   }
 }
+
+mixin ProjectsBlocFavouritesMixin on Bloc<ProjectsEvent, ProjectsState> {}
+
+mixin ProjectsBlocNormalMixin on Bloc<ProjectsEvent, ProjectsState> {}

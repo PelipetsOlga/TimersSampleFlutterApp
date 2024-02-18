@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../di/di.dart';
 import '../../domain/models/project.dart';
 import '../widgets/accent_border.dart';
 import '../widgets/star_checkbox.dart';
@@ -8,8 +9,9 @@ import 'projects_bloc/bloc.dart';
 
 class ProjectsListWidget extends StatelessWidget {
   final List<ProjectModel> projects;
+  final bool favorite;
 
-  const ProjectsListWidget(this.projects, {super.key});
+  const ProjectsListWidget(this.projects, this.favorite, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class ProjectsListWidget extends StatelessWidget {
       child: ListView.builder(
         itemCount: projects.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProjectWidget(projects[index]);
+          return ProjectWidget(projects[index], favorite);
         },
       ),
     );
@@ -27,8 +29,9 @@ class ProjectsListWidget extends StatelessWidget {
 
 class ProjectWidget extends StatelessWidget {
   final ProjectModel project;
+  final bool favorite;
 
-  const ProjectWidget(this.project, {super.key});
+  const ProjectWidget(this.project, this.favorite, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +56,13 @@ class ProjectWidget extends StatelessWidget {
                         StarCheckbox(
                           isChecked: project.favourite,
                           onChange: (value) {
-                            context.read<ProjectsBloc>().add(ProjectLike(
-                                project: project, like: value));
+                            if (favorite) {
+                              context.read<ProjectsBlocFavouritesMixin>().add(
+                                  ProjectLike(project: project, like: value ));
+                            } else {
+                              context.read<ProjectsBlocNormalMixin>().add(
+                                  ProjectLike(project: project, like: value));
+                            }
                           },
                         ),
                         const SizedBox(width: 8),

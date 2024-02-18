@@ -8,12 +8,12 @@ sealed class ProjectsEvent extends Equatable {
 }
 
 final class ProjectsRefresh extends ProjectsEvent {
-  bool favorites;
+  bool favourite;
 
-  ProjectsRefresh({required this.favorites});
+  ProjectsRefresh({required this.favourite});
 
   @override
-  List<Object> get props => [favorites];
+  List<Object> get props => [favourite];
 }
 
 final class ProjectLike extends ProjectsEvent {
