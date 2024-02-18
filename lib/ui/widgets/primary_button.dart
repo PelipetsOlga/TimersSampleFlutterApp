@@ -8,7 +8,7 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return FilledButton(
       onPressed: onPressed,
       style: Theme.of(context).elevatedButtonTheme.style,
       child: Container(

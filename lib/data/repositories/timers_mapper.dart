@@ -6,8 +6,11 @@ ProjectModel _toProjectDomain(Project project) {
     title: project.title,
     number: project.number,
     description: project.description,
-    user: userEmpty,
+    userId: project.userId,
     tasks: project.tasks.map((e) => _toTaskDomain(e)).toList(),
+    favourite: project.favourite,
+    startDate: project.startDate,
+    deadline: project.deadline,
   );
 }
 
@@ -23,20 +26,13 @@ TimeSheetModel _toTimesheetDomain(TimeSheet timesheet) {
   return TimeSheetModel(
     id: timesheet.id,
     userId: timesheet.userId,
-    project: timesheet.project,
+    description: timesheet.description,
+    project: _toProjectDomain(timesheet.project),
     favourite: timesheet.favourite,
     inProgress: timesheet.inProgress,
-    timeRecord: _toTimeRecordDomain(timesheet.timeRecord),
-  );
-}
-
-TimeRecordModel _toTimeRecordDomain(TimeRecord record) {
-  return TimeRecordModel(
-    id: record.id,
-    startDate: record.startDate,
-    deadline: record.deadline,
-    completed: record.completed,
-    durationExpected: record.durationExpected,
-    durationActual: record.durationActual,
+    task: _toTaskDomain(timesheet.task),
+    completed: timesheet.completed,
+    durationExpected: timesheet.durationExpected,
+    durationActual: timesheet.durationActual,
   );
 }

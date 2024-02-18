@@ -1,7 +1,5 @@
 import 'package:flutter_test_sample/data/data_utils.dart';
-import 'package:flutter_test_sample/data/models/time_record.dart';
 import 'package:flutter_test_sample/data/models/time_sheet.dart';
-import 'package:flutter_test_sample/data/models/time_sheet_request.dart';
 
 import '../models/project.dart';
 import '../models/task.dart';
@@ -26,7 +24,7 @@ abstract class TimersApi {
   Future<List<TimeSheet>> getAllTimeSheets(String userId);
 
   // HTTP POST
-  Future<TimeSheet> createTimeSheet(TimeSheetRequest input);
+  Future<TimeSheet> createTimeSheet(TimeSheet input);
 
   // HTTP DELETE
   Future<void> removeTimeSheet(int timesheetId);
@@ -59,7 +57,7 @@ class TimersApiStub extends TimersApi {
   }
 
   @override
-  Future<TimeSheet> createTimeSheet(TimeSheetRequest input) {
+  Future<TimeSheet> createTimeSheet(TimeSheet input) {
     // TODO: implement createTimeSheet
     throw UnimplementedError();
   }

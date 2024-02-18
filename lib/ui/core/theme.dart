@@ -13,9 +13,11 @@ TextTheme _textTheme = TextTheme(
       .copyWith(fontSize: 32, fontWeight: FontWeight.bold, height: 40),
   headlineMedium:
       GoogleFonts.inter().copyWith(fontSize: 28, fontWeight: FontWeight.bold),
-  headlineSmall: GoogleFonts.inter().copyWith(fontSize: 24),
+  headlineSmall:
+      GoogleFonts.inter().copyWith(fontSize: 24, fontWeight: FontWeight.bold),
   titleLarge: GoogleFonts.inter().copyWith(fontSize: 22),
-  titleMedium: GoogleFonts.inter().copyWith(fontSize: 16, fontWeight: FontWeight.w600),
+  titleMedium:
+      GoogleFonts.inter().copyWith(fontSize: 16, fontWeight: FontWeight.w600),
   titleSmall: GoogleFonts.inter().copyWith(fontSize: 14),
   bodyLarge: GoogleFonts.inter().copyWith(fontSize: 16),
   bodyMedium: GoogleFonts.inter().copyWith(fontSize: 14),
@@ -81,13 +83,13 @@ ThemeData _darkTheme = ThemeData(
 
 var _elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
-      elevation: 0,
-      primary: Colors.white.withOpacity(0.16),
-      onPrimary: Colors.white,
-      foregroundColor: Colors.white.withOpacity(0.16),
-      backgroundColor: Colors.white.withOpacity(0.16),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
+    elevation: 0,
+    primary: Colors.white.withOpacity(0.16),
+    onPrimary: Colors.white,
+    foregroundColor: Colors.white.withOpacity(0.16),
+    backgroundColor: Colors.white.withOpacity(0.16),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12.0),
+    ),
   ),
 );

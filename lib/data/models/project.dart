@@ -14,6 +14,8 @@ class Project {
     required this.favourite,
     required this.userId,
     required this.tasks,
+    required this.startDate,
+    required this.deadline,
   });
 
   factory Project.fromJson(Map<String, dynamic> json) =>
@@ -26,6 +28,8 @@ class Project {
   final bool favourite;
   final String userId;
   final List<Task> tasks;
+  final int startDate;
+  final int deadline;
 
   Map<String, dynamic> toJson() => _$ProjectToJson(this);
 }

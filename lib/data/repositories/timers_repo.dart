@@ -5,15 +5,12 @@ import 'package:flutter_test_sample/domain/models/time_sheet.dart';
 import 'dart:async';
 
 import '../../domain/models/project.dart';
-import '../../domain/models/time_sheet_record.dart';
-import '../../domain/models/user.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../../domain/repositories/timers_repo.dart';
 import '../api/timers_api.dart';
 import '../../domain/models/errors.dart';
 import '../models/project.dart';
 import '../models/task.dart';
-import '../models/time_record.dart';
 
 part 'timers_mapper.dart';
 
@@ -65,9 +62,9 @@ class TimersRepositoryImpl implements TimersRepository {
   }
 
   @override
-  Future<Either<AppError, ProjectModel>> createTimeSheet(
+  Future<void> createTimer(
       TimeSheetModel input) async {
-    return const Left(UnimplementedError());
+    return timesheetsCache?.add(input);
   }
 
   @override

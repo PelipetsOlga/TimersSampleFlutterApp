@@ -64,6 +64,8 @@ Project project1 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(6).toList(),
+  startDate: DateTime.parse('2024-01-20 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 Project project2 = Project(
@@ -75,6 +77,8 @@ Project project2 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(5).toList(),
+  startDate: DateTime.parse('2024-02-20 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 Project project3 = Project(
@@ -86,6 +90,8 @@ Project project3 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(4).toList(),
+  startDate: DateTime.parse('2024-01-02 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 Project project4 = Project(
@@ -97,6 +103,8 @@ Project project4 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(6).toList(),
+  startDate: DateTime.parse('2024-01-01 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 Project project5 = Project(
@@ -108,6 +116,8 @@ Project project5 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(1).toList(),
+  startDate: DateTime.parse('2024-03-01 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 Project project6 = Project(
@@ -119,6 +129,8 @@ Project project6 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(6).toList(),
+  startDate: DateTime.parse('2024-01-20 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 Project project7 = Project(
@@ -130,6 +142,8 @@ Project project7 = Project(
   favourite: false,
   userId: "123456",
   tasks: _tasksStub.take(4).toList(),
+  startDate: DateTime.parse('2024-01-20 00:00:00.000').millisecondsSinceEpoch,
+  deadline: DateTime.parse('2024-05-01 00:00:00.000').millisecondsSinceEpoch,
 );
 
 TimeSheet timeSheet1 = TimeSheet(
@@ -137,61 +151,49 @@ TimeSheet timeSheet1 = TimeSheet(
     userId: "1234",
     project: project1,
     favourite: false,
-    timeRecord: TimeRecord(
-        id: "4353",
-        startDate:
-            DateTime.parse('2023-11-01 00:00:00.000').millisecondsSinceEpoch,
-        deadline:
-        DateTime.parse('2024-02-01 00:00:00.000').millisecondsSinceEpoch,
-        completed: true,
-        durationExpected: 30 * 60 * 60 * 1000,
-        durationActual: 30 * 60 * 60 * 1000),
-    inProgress: false);
+    description:
+        "As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis",
+    inProgress: false,
+    task: taskStub1,
+    completed: false,
+    durationExpected: 30 * 60 * 60 * 1000,
+    durationActual: 5 * 60 * 60 * 1000);
 
 TimeSheet timeSheet2 = TimeSheet(
     id: "1253",
     userId: "1234",
     project: project2,
     favourite: false,
-    timeRecord: TimeRecord(
-        id: "4355",
-        startDate:
-            DateTime.parse('2024-01-20 00:00:00.000').millisecondsSinceEpoch,
-        deadline:
-        DateTime.parse('2024-04-01 00:00:00.000').millisecondsSinceEpoch,
-        completed: false,
-        durationExpected: 20 * 60 * 60 * 1000,
-        durationActual: 20 * 60 * 60 * 900),
-    inProgress: false);
+    description:
+        "Sync with Client, communicate, work on the new design with designer, new tasks preparation call with the front end",
+    inProgress: false,
+    task: taskStub2,
+    completed: false,
+    durationExpected: 40 * 60 * 60 * 1000,
+    durationActual: 25 * 60 * 60 * 1000);
 
 TimeSheet timeSheet3 = TimeSheet(
     id: "1223",
     userId: "1234",
     project: project3,
     favourite: false,
-    timeRecord: TimeRecord(
-        id: "4365",
-        startDate:
-            DateTime.parse('2024-02-01 00:00:00.000').millisecondsSinceEpoch,
-        deadline:
-        DateTime.parse('2024-05-15 00:00:00.000').millisecondsSinceEpoch,
-        completed: false,
-        durationExpected: 20 * 60 * 60 * 1000,
-        durationActual: 20 * 60 * 60 * 900),
-    inProgress: false);
+    description:
+        "As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis",
+    inProgress: false,
+    task: taskStub3,
+    completed: true,
+    durationExpected: 30 * 60 * 60 * 1000,
+    durationActual: 30 * 60 * 60 * 1000);
 
 TimeSheet timeSheet4 = TimeSheet(
     id: "1523",
     userId: "1234",
     project: project3,
     favourite: false,
-    timeRecord: TimeRecord(
-        id: "4395",
-        startDate:
-        DateTime.parse('2024-02-14 00:00:00.000').millisecondsSinceEpoch,
-        deadline:
-        DateTime.parse('2024-02-28 00:00:00.000').millisecondsSinceEpoch,
-        completed: false,
-        durationExpected: 40 * 60 * 60 * 1000,
-        durationActual: 0),
-    inProgress: false);
+    description:
+        "Sync with Client, communicate, work on the new design with designer, new tasks preparation call with the front end",
+    inProgress: false,
+    task: taskStub4,
+    completed: false,
+    durationExpected: 30 * 60 * 60 * 1000,
+    durationActual: 0);

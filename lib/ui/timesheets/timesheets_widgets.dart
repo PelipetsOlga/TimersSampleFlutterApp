@@ -85,7 +85,7 @@ class TimesheetWidget extends StatelessWidget {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            "Deadline ${getDate(timesheet.timeRecord.deadline)}",
+                            "Deadline ${getDate(timesheet.project.deadline)}",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ),

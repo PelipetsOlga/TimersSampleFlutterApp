@@ -11,7 +11,7 @@ abstract interface class TimersRepository {
   Future<void> likeProject(bool value, String projectId);
 
   Future<Either<AppError, List<TimeSheetModel>>> getAllTimeSheets();
-  Future<Either<AppError, ProjectModel>> createTimeSheet(TimeSheetModel input);
+  Future<void> createTimer(TimeSheetModel input);
   Future<Either<AppError, void>> removeTimeSheet(TimeSheetModel input);
   Future<void> likeTimesheet(bool value, String timesheetId);
   Future<Either<AppError, void>> startTimesheet();

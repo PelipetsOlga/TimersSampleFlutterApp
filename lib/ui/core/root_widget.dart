@@ -33,7 +33,7 @@ class _RootWidgetState extends State<RootWidget> {
         destinations: _destinations,
       ),
       body: <Widget>[
-        const TimesheetsRootWidget(),
+        TimesheetsRootWidget(),
         const ProjectsRootWidget(),
         const SettingsWidget(),
       ][currentPageIndex],

@@ -11,8 +11,10 @@ class ProjectModel extends Equatable {
     required this.number,
     required this.description,
     this.favourite = false,
-    required this.user,
+    required this.userId,
     required this.tasks,
+    required this.startDate,
+    required this.deadline,
   });
 
   final String id;
@@ -20,9 +22,21 @@ class ProjectModel extends Equatable {
   final String number;
   final String description;
   bool favourite;
-  final UserModel user;
+  final String userId;
   final List<TaskModel> tasks;
+  final int startDate;
+  final int deadline;
 
   @override
-  List<Object> get props => [id, title, number, description, favourite, user, tasks];
+  List<Object> get props => [
+        id,
+        title,
+        number,
+        startDate,
+        deadline,
+        description,
+        favourite,
+        userId,
+        tasks
+      ];
 }

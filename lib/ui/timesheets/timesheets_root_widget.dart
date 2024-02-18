@@ -12,25 +12,27 @@ import '../widgets/error_widget.dart';
 import '../widgets/menu_button.dart';
 
 class TimesheetsRootWidget extends StatelessWidget {
-  const TimesheetsRootWidget({super.key});
+  TimesheetsRootWidget({super.key});
+  TimesheetsBloc bloc = TimesheetsBloc(GetIt.instance.get<TimersRepository>());
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => TimesheetsBloc(GetIt.instance.get<TimersRepository>()),
+        create: (_) => bloc,
         child: Scaffold(
             appBar: AppBar(
               centerTitle: false,
-              actions: <Widget>[MenuButton.plus(onPressed: () {
-                context.push('/createTimer');
-              })
+              actions: <Widget>[
+                MenuButton.plus(onPressed: () async {
+                  var resultOfNavigation = await context.push('/createTimer');
+                  if (resultOfNavigation == "refresh") {
+                    bloc.add(TimesheetsRefresh());
+                  }
+                })
               ],
               title: Text(
                 "Timesheets",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineLarge,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
             body: const _TimesheetsContentWidget()));
@@ -45,14 +47,13 @@ class _TimesheetsContentWidget extends StatelessWidget {
     context.read<TimesheetsBloc>().add(TimesheetsRefresh());
     return BlocBuilder<TimesheetsBloc, TimesheetsState>(
         builder: (context, state) {
-          return switch (state) {
-            TimesheetsInitial() => const Center(),
-            TimesheetsLoading() => const LoadingIndicator(),
-            TimesheetsError() => ErrorCenterWidget(state.errorMessage),
-            TimesheetsEmptyLoaded() =>
-                EmptyContentWidget.emptyTimesheets(() {}),
-            TimesheetsLoaded() => TimesheetsWidget(timesheets: state.timesheets)
-          };
-        });
+      return switch (state) {
+        TimesheetsInitial() => const Center(),
+        TimesheetsLoading() => const LoadingIndicator(),
+        TimesheetsError() => ErrorCenterWidget(state.errorMessage),
+        TimesheetsEmptyLoaded() => EmptyContentWidget.emptyTimesheets(() {}),
+        TimesheetsLoaded() => TimesheetsWidget(timesheets: state.timesheets)
+      };
+    });
   }
 }

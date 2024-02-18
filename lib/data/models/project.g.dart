@@ -16,6 +16,8 @@ Project _$ProjectFromJson(Map<String, dynamic> json) => Project(
       tasks: (json['tasks'] as List<dynamic>)
           .map((e) => Task.fromJson(e as Map<String, dynamic>))
           .toList(),
+      startDate: json['startDate'] as int,
+      deadline: json['deadline'] as int,
     );
 
 Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
@@ -26,4 +28,6 @@ Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
       'favourite': instance.favourite,
       'userId': instance.userId,
       'tasks': instance.tasks,
+      'startDate': instance.startDate,
+      'deadline': instance.deadline,
     };
