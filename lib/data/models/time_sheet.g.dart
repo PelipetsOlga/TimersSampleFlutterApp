@@ -17,6 +17,8 @@ TimeSheet _$TimeSheetFromJson(Map<String, dynamic> json) => TimeSheet(
       completed: json['completed'] as bool,
       durationExpected: json['durationExpected'] as int,
       durationActual: json['durationActual'] as int,
+      state: $enumDecode(_$TimerStateEnumMap, json['state']),
+      lastTickerStartTime: json['lastTickerStartTime'] as int,
     );
 
 Map<String, dynamic> _$TimeSheetToJson(TimeSheet instance) => <String, dynamic>{
@@ -30,4 +32,13 @@ Map<String, dynamic> _$TimeSheetToJson(TimeSheet instance) => <String, dynamic>{
       'completed': instance.completed,
       'durationExpected': instance.durationExpected,
       'durationActual': instance.durationActual,
+      'state': _$TimerStateEnumMap[instance.state]!,
+      'lastTickerStartTime': instance.lastTickerStartTime,
     };
+
+const _$TimerStateEnumMap = {
+  TimerState.initial: 'initial',
+  TimerState.inProgress: 'inProgress',
+  TimerState.inPause: 'inPause',
+  TimerState.completed: 'completed',
+};

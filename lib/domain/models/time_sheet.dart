@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_test_sample/domain/models/project.dart';
 import 'package:flutter_test_sample/domain/models/task.dart';
 
+import 'timer_conter.dart';
 
 class TimeSheetModel extends Equatable {
   TimeSheetModel({
@@ -11,10 +12,7 @@ class TimeSheetModel extends Equatable {
     required this.project,
     required this.task,
     required this.favourite,
-    required this.inProgress,
-    required this.completed,
-    required this.durationExpected,
-    required this.durationActual,
+    required this.timer,
   });
 
   TimeSheetModel.create({
@@ -24,10 +22,7 @@ class TimeSheetModel extends Equatable {
     required this.project,
     required this.task,
     required this.favourite,
-  })  : inProgress = false,
-        completed = false,
-        durationExpected = 2 * 30 * 24 * 60 * 60 * 1000,
-        durationActual = 0;
+  }) : timer = TimerModel.createStub();
 
   final String id;
   final String userId;
@@ -35,22 +30,9 @@ class TimeSheetModel extends Equatable {
   final ProjectModel project;
   final TaskModel task;
   bool favourite;
-  bool inProgress;
-  bool completed;
-  int durationExpected;
-  int durationActual;
+  TimerModel timer;
 
   @override
-  List<Object> get props => [
-        id,
-        userId,
-        description,
-        project,
-        task,
-        favourite,
-        inProgress,
-        completed,
-        durationExpected,
-        durationActual
-      ];
+  List<Object> get props =>
+      [id, userId, description, project, task, favourite, timer];
 }

@@ -147,53 +147,65 @@ Project project7 = Project(
 );
 
 TimeSheet timeSheet1 = TimeSheet(
-    id: "12",
-    userId: "1234",
-    project: project1,
-    favourite: false,
-    description:
-        "As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis",
-    inProgress: false,
-    task: taskStub1,
-    completed: false,
-    durationExpected: 30 * 60 * 60 * 1000,
-    durationActual: 5 * 60 * 60 * 1000);
+  id: "12",
+  userId: "1234",
+  project: project1,
+  favourite: false,
+  description:
+      "As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis",
+  inProgress: false,
+  task: taskStub1,
+  completed: false,
+  durationExpected: 30 * 60 * 60 * 1000,
+  durationActual: 5 * 60 * 60 * 1000,
+  state: TimerState.inPause,
+  lastTickerStartTime: 0,
+);
 
 TimeSheet timeSheet2 = TimeSheet(
-    id: "1253",
-    userId: "1234",
-    project: project2,
-    favourite: false,
-    description:
-        "Sync with Client, communicate, work on the new design with designer, new tasks preparation call with the front end",
-    inProgress: false,
-    task: taskStub2,
-    completed: false,
-    durationExpected: 40 * 60 * 60 * 1000,
-    durationActual: 25 * 60 * 60 * 1000);
+  id: "1253",
+  userId: "1234",
+  project: project2,
+  favourite: false,
+  description:
+      "Sync with Client, communicate, work on the new design with designer, new tasks preparation call with the front end",
+  inProgress: false,
+  task: taskStub2,
+  completed: false,
+  durationExpected: 40 * 60 * 60 * 1000,
+  durationActual: 25 * 60 * 60 * 1000,
+  state: TimerState.inPause,
+  lastTickerStartTime: 0,
+);
 
 TimeSheet timeSheet3 = TimeSheet(
-    id: "1223",
-    userId: "1234",
-    project: project3,
-    favourite: false,
-    description:
-        "As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis",
-    inProgress: false,
-    task: taskStub3,
-    completed: true,
-    durationExpected: 30 * 60 * 60 * 1000,
-    durationActual: 30 * 60 * 60 * 1000);
+  id: "1223",
+  userId: "1234",
+  project: project3,
+  favourite: false,
+  description:
+      "As a user, I would like to be able to buy a subscription, this would allow me to get a discount on the products and on the second stage of diagnosis",
+  inProgress: false,
+  task: taskStub3,
+  completed: true,
+  durationExpected: 30 * 60 * 60 * 1000,
+  durationActual: 30 * 60 * 60 * 1000,
+  state: TimerState.completed,
+  lastTickerStartTime: 0,
+);
 
 TimeSheet timeSheet4 = TimeSheet(
-    id: "1523",
-    userId: "1234",
-    project: project3,
-    favourite: false,
-    description:
-        "Sync with Client, communicate, work on the new design with designer, new tasks preparation call with the front end",
-    inProgress: false,
-    task: taskStub4,
-    completed: false,
-    durationExpected: 30 * 60 * 60 * 1000,
-    durationActual: 0);
+  id: "1523",
+  userId: "1234",
+  project: project3,
+  favourite: false,
+  description:
+      "Sync with Client, communicate, work on the new design with designer, new tasks preparation call with the front end",
+  inProgress: false,
+  task: taskStub4,
+  completed: false,
+  durationExpected: 30 * 60 * 60 * 1000,
+  durationActual: 0,
+  state: TimerState.initial,
+  lastTickerStartTime: 0
+);

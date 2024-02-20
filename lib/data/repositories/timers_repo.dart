@@ -5,6 +5,7 @@ import 'package:flutter_test_sample/domain/models/time_sheet.dart';
 import 'dart:async';
 
 import '../../domain/models/project.dart';
+import '../../domain/models/timer_conter.dart';
 import '../../domain/repositories/auth_repo.dart';
 import '../../domain/repositories/timers_repo.dart';
 import '../api/timers_api.dart';
@@ -87,20 +88,5 @@ class TimersRepositoryImpl implements TimersRepository {
     timesheetsCache
         ?.firstWhere((element) => element.id == timesheetId)
         .favourite = value;
-  }
-
-  @override
-  Future<Either<AppError, void>> startTimesheet() async {
-    return const Left(UnimplementedError());
-  }
-
-  @override
-  Future<Either<AppError, void>> pauseTimesheet() async {
-    return const Left(UnimplementedError());
-  }
-
-  @override
-  Future<Either<AppError, void>> stopTimesheet() async {
-    return const Left(UnimplementedError());
   }
 }

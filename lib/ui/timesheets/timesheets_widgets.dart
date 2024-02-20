@@ -7,6 +7,7 @@ import '../../data/data_utils.dart';
 import '../../domain/models/time_sheet.dart';
 import '../widgets/accent_border.dart';
 import '../widgets/star_checkbox.dart';
+import '../widgets/timer_main_screen.dart';
 
 class TimesheetsWidget extends StatelessWidget {
   List<TimeSheetModel> timesheets;
@@ -43,6 +44,8 @@ class TimesheetWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const AccentVerticalBorder(height: 80),
               const SizedBox(width: 16),
@@ -91,6 +94,11 @@ class TimesheetWidget extends StatelessWidget {
                         ),
                       ]),
                     ]),
+              ),
+              const SizedBox(width: 8),
+              TimerMainWidget(
+                model: timesheet,
+                showSeconds: true,
               ),
             ],
           ),

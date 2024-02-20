@@ -22,17 +22,23 @@ TaskModel _toTaskDomain(Task task) {
   );
 }
 
-TimeSheetModel _toTimesheetDomain(TimeSheet timesheet) {
-  return TimeSheetModel(
-    id: timesheet.id,
-    userId: timesheet.userId,
-    description: timesheet.description,
-    project: _toProjectDomain(timesheet.project),
-    favourite: timesheet.favourite,
-    inProgress: timesheet.inProgress,
-    task: _toTaskDomain(timesheet.task),
-    completed: timesheet.completed,
+TimerModel _toTimerDomain(TimeSheet timesheet) {
+  return TimerModel(
     durationExpected: timesheet.durationExpected,
     durationActual: timesheet.durationActual,
+    completed: timesheet.completed,
+    state: timesheet.state,
+    lastTickerStartTime: timesheet.lastTickerStartTime,
   );
+}
+
+TimeSheetModel _toTimesheetDomain(TimeSheet timesheet) {
+  return TimeSheetModel(
+      id: timesheet.id,
+      userId: timesheet.userId,
+      description: timesheet.description,
+      project: _toProjectDomain(timesheet.project),
+      favourite: timesheet.favourite,
+      task: _toTaskDomain(timesheet.task),
+      timer: _toTimerDomain(timesheet));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_test_sample/data/models/task.dart';
+import 'package:flutter_test_sample/domain/models/timer_conter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'project.dart';
@@ -18,6 +19,8 @@ class TimeSheet {
     required this.completed,
     required this.durationExpected,
     required this.durationActual,
+    required this.state,
+    required this.lastTickerStartTime,
   });
 
   factory TimeSheet.fromJson(Map<String, dynamic> json) =>
@@ -33,6 +36,8 @@ class TimeSheet {
   final bool completed;
   final int durationExpected;
   final int durationActual;
+  final TimerState state;
+  final int lastTickerStartTime;
 
   Map<String, dynamic> toJson() => _$TimeSheetToJson(this);
 }
