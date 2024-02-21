@@ -31,7 +31,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   UserModel profile() {
-    return userEmpty; //TODO Add auth
+    return _toUserDomain(userStub); //TODO Add auth
     if (cache == null) throw Exception("Anauthorised");
     return cache!;
   }

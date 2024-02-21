@@ -16,5 +16,21 @@ class AccentVerticalBorder extends StatelessWidget{
       ),
     );
   }
+}
 
+class HorizontalBorder extends StatelessWidget{
+
+  const HorizontalBorder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 1,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        borderRadius: const BorderRadius.all(Radius.circular(1.0)),
+      ),
+    );
+  }
 }

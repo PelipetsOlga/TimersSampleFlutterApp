@@ -8,6 +8,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
-    return AppTheme();
+    return const AppTheme();
   }
 }

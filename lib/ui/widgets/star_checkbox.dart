@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class StarCheckbox extends StatefulWidget {
-  Function onChange;
-  bool isChecked;
+  final Function onChange;
+  final bool isChecked;
 
-  StarCheckbox({
+  const StarCheckbox({
     Key? key,
     required this.onChange,
     required this.isChecked,

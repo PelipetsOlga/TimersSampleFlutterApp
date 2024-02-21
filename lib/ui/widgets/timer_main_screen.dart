@@ -1,89 +1,89 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_sample/domain/models/time_sheet.dart';
+import 'package:flutter_test_sample/ui/widgets/timer_big_widget.dart';
+import 'package:flutter_test_sample/ui/widgets/timer_small_widget.dart';
 import 'package:timer_count_down/timer_controller.dart';
-import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../di/di.dart';
 import '../../domain/models/timer_conter.dart';
+import '../timesheets_details/timesheets_details_bloc/bloc.dart';
 
-class TimerMainWidget extends StatefulWidget {
-  final TimeSheetModel model;
+class TimerWidget extends StatefulWidget {
+  final TimeSheetModel timesheet;
   final bool showSeconds;
+  final bool detailed;
 
-  const TimerMainWidget(
-      {required this.model, required this.showSeconds, super.key});
+  const TimerWidget(
+      {required this.timesheet,
+      required this.showSeconds,
+      required this.detailed,
+      super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _TimerMainWidgetState();
+    return _TimerWidgetState();
   }
 }
 
-class _TimerMainWidgetState extends State<TimerMainWidget> {
+class _TimerWidgetState extends State<TimerWidget> {
   final CountdownController _controller = CountdownController(autoStart: false);
 
   void _startTimer() {
-    if (widget.model.timer.state == TimerState.inProgress ||
-        widget.model.timer.state == TimerState.completed) {
-      logger.d("_startTimer state = ${widget.model.timer.state}, NOT STARTED");
+    if (widget.timesheet.timer.state == TimerState.inProgress ||
+        widget.timesheet.timer.state == TimerState.completed) {
       return;
     }
-    widget.model.timer.state = TimerState.inProgress;
+    widget.timesheet.timer.state = TimerState.inProgress;
     _controller.start();
-    widget.model.timer.lastTickerStartTime =
+    widget.timesheet.timer.lastTickerStartTime =
         DateTime.now().millisecondsSinceEpoch;
-
-    logger.d(
-        "_startTimer lastTickerStartTime=${widget.model.timer.lastTickerStartTime}");
   }
 
   void _pauseTimer() {
-    if (widget.model.timer.state != TimerState.inProgress) {
-      logger.d("_pauseTimer state = ${widget.model.timer.state}, NOT Paused");
+    if (widget.timesheet.timer.state != TimerState.inProgress) {
       return;
     }
-    widget.model.timer.state = TimerState.inPause;
+    widget.timesheet.timer.state = TimerState.inPause;
     _controller.pause();
-    widget.model.timer.lastTickerStartTime = 0;
-    logger.d("_pauseTimer");
+    widget.timesheet.timer.lastTickerStartTime = 0;
   }
 
   void _completeTimer() {
-    if (widget.model.timer.state == TimerState.completed) {
-      logger.d(
-          "_completeTimer state = ${widget.model.timer.state}, NOT COMPLETED");
+    if (widget.timesheet.timer.state == TimerState.completed) {
       return;
     }
-    widget.model.timer.state = TimerState.completed;
-    widget.model.timer.completed = true;
+    widget.timesheet.timer.state = TimerState.completed;
+    widget.timesheet.timer.completed = true;
     _controller.pause();
-    widget.model.timer.lastTickerStartTime = 0;
-    logger.d("_completeTimer");
+    widget.timesheet.timer.lastTickerStartTime = 0;
+    try {
+      context.read<TimesheetsDetailsBloc>().add(TimesheetsRefresh());
+    } catch (e) {
+      logger.e(e);
+    }
   }
 
   void _updateTimerOnTick() {
-    if (widget.model.timer.state != TimerState.inProgress) {
-      logger.d(
-          "_updateTimerOnTick state = ${widget.model.timer.state}, NOT UPDATED");
+    if (widget.timesheet.timer.state != TimerState.inProgress) {
       return;
     }
-    var durationActual = widget.model.timer.durationActual;
+    var durationActual = widget.timesheet.timer.durationActual;
     var timeNow = DateTime.now().millisecondsSinceEpoch;
-    var difFromLastTick = timeNow - widget.model.timer.lastTickerStartTime;
+    var difFromLastTick = timeNow - widget.timesheet.timer.lastTickerStartTime;
 
-    widget.model.timer.durationActual = (durationActual + difFromLastTick);
-    if (widget.model.timer.durationActual >=
-        widget.model.timer.durationExpected) {
+    widget.timesheet.timer.durationActual = (durationActual + difFromLastTick);
+    if (widget.timesheet.timer.durationActual >=
+        widget.timesheet.timer.durationExpected) {
       _completeTimer();
     } else {
-      widget.model.timer.lastTickerStartTime = timeNow;
+      widget.timesheet.timer.lastTickerStartTime = timeNow;
     }
-    logger.d("_updateTimer tickedTime = $difFromLastTick");
   }
 
   void _startTimerWithDelay() async {
     await Future.delayed(const Duration(seconds: 1));
-    if (mounted && widget.model.timer.state == TimerState.inProgress) {
+    if (mounted && widget.timesheet.timer.state == TimerState.inProgress) {
       setState(() {
         _startTimer();
       });
@@ -94,85 +94,65 @@ class _TimerMainWidgetState extends State<TimerMainWidget> {
   Widget build(BuildContext context) {
     int timerInitialTime = 0;
 
-    if (widget.model.timer.state == TimerState.inProgress) {
+    if (widget.timesheet.timer.state == TimerState.inProgress) {
       var nowTime = DateTime.now().millisecondsSinceEpoch;
-      var difFromLastStart = nowTime - widget.model.timer.lastTickerStartTime;
+      var difFromLastStart =
+          nowTime - widget.timesheet.timer.lastTickerStartTime;
       var durationCurrent =
-          difFromLastStart + widget.model.timer.durationActual;
-      logger.d(
-          "build widget state == TimerState.inProgress durationCurrent=$durationCurrent");
-      if ((durationCurrent) > widget.model.timer.durationExpected) {
+          difFromLastStart + widget.timesheet.timer.durationActual;
+      if ((durationCurrent) > widget.timesheet.timer.durationExpected) {
         _completeTimer();
         timerInitialTime = 0;
       } else {
         timerInitialTime =
-            (widget.model.timer.durationExpected - durationCurrent) ~/ 1000;
-        logger.d(
-            "build widget state == TimerState.inProgress durationCurrent=$durationCurrent");
+            (widget.timesheet.timer.durationExpected - durationCurrent) ~/ 1000;
         _startTimerWithDelay();
       }
-    } else if (widget.model.timer.state == TimerState.inPause) {
-      timerInitialTime = (widget.model.timer.durationExpected -
-              widget.model.timer.durationActual) ~/
+    } else if (widget.timesheet.timer.state == TimerState.inPause) {
+      timerInitialTime = (widget.timesheet.timer.durationExpected -
+              widget.timesheet.timer.durationActual) ~/
           1000;
-    } else if (widget.model.timer.state == TimerState.completed) {
+    } else if (widget.timesheet.timer.state == TimerState.completed) {
       timerInitialTime = 0;
     } else {
-      //TimerState.initial
-      timerInitialTime = widget.model.timer.durationExpected ~/ 1000;
+      // if state == TimerState.initial
+      timerInitialTime = widget.timesheet.timer.durationExpected ~/ 1000;
     }
-
-    return Container(
-      width: 104,
-      height: 48,
-      padding: const EdgeInsets.only(left: 16),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondaryContainer,
-        border: Border.all(color: Colors.black, width: 0.0),
-        borderRadius: const BorderRadius.all(Radius.circular(64)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Countdown(
+    return widget.detailed
+        ? TimerBigView(
             controller: _controller,
-            seconds: timerInitialTime,
-            build: (_, double time) {
-              _updateTimerOnTick();
-              return Text(
-                formattedTime(
-                    timeInSecond: time.toInt(),
-                    showSeconds: widget.showSeconds),
-                style: Theme.of(context).textTheme.labelLarge,
-              );
+            timerInitialTime: timerInitialTime,
+            timer: widget.timesheet.timer,
+            updateTimerOnTick: _updateTimerOnTick,
+            completeTimer: _completeTimer,
+            pauseTimer: () {
+              setState(() {
+                _pauseTimer();
+              });
             },
-            interval: const Duration(milliseconds: 1000),
-            onFinished: () {
-              _completeTimer();
+            startTimer: () {
+              setState(() {
+                _startTimer();
+              });
             },
-          ),
-          const SizedBox(width: 0),
-          widget.model.timer.state == TimerState.inProgress
-              ? IconButton(
-                  icon: const Icon(Icons.pause),
-                  onPressed: () {
-                    setState(() {
-                      _pauseTimer();
-                    });
-                  })
-              : widget.model.timer.state == TimerState.completed
-                  ? const SizedBox(width: 0)
-                  : IconButton(
-                      icon: const Icon(Icons.play_arrow),
-                      onPressed: () {
-                        setState(() {
-                          _startTimer();
-                        });
-                      },
-                    )
-        ],
-      ),
-    );
+          )
+        : TimerSmallView(
+            controller: _controller,
+            timerInitialTime: timerInitialTime,
+            timer: widget.timesheet.timer,
+            updateTimerOnTick: _updateTimerOnTick,
+            completeTimer: _completeTimer,
+            pauseTimer: () {
+              setState(() {
+                _pauseTimer();
+              });
+            },
+            startTimer: () {
+              setState(() {
+                _startTimer();
+              });
+            },
+          );
   }
 }
 

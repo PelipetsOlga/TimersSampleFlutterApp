@@ -8,9 +8,9 @@ import '../widgets/form_items.dart';
 import 'bloc/bloc.dart';
 
 class CreateTimerContentWidget extends StatefulWidget {
-  List<ProjectModel> projects;
+  final List<ProjectModel> projects;
 
-  CreateTimerContentWidget(this.projects, {super.key});
+  const CreateTimerContentWidget(this.projects, {super.key});
 
   @override
   State<StatefulWidget> createState() {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_sample/di/di.dart';
 import 'package:flutter_test_sample/domain/repositories/auth_repo.dart';
 import 'package:flutter_test_sample/ui/projects/projects_bloc/bloc.dart';
 import 'package:flutter_test_sample/ui/projects/projects_list.dart';

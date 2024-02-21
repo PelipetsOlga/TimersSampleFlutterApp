@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test_sample/di/di.dart';
+import 'package:flutter_test_sample/domain/repositories/auth_repo.dart';
 
 import '../../../domain/models/errors.dart';
 import '../../../domain/models/time_sheet.dart';
@@ -12,14 +13,15 @@ part 'timesheets_state.dart';
 part 'timesheets_event.dart';
 
 class TimesheetsBloc extends Bloc<TimesheetsEvent, TimesheetsState> {
-  TimesheetsBloc(TimersRepository repository) : super(TimesheetsInitial()) {
+  TimesheetsBloc(TimersRepository repository, AuthRepository authRepository)
+      : super(TimesheetsInitial()) {
     void mapRefreshEventToState(
         TimesheetsRefresh event, Emitter<TimesheetsState> emit) async {
       emit(TimesheetsLoading());
+      authRepository.profile();
 
       Either<AppError, List<TimeSheetModel>> result =
           await repository.getAllTimeSheets();
-      logger.d("bloc refresh timesheets=${result.right}");
       result.fold(
           (left) => {emit(TimesheetsError(left.msg))},
           (right) => {

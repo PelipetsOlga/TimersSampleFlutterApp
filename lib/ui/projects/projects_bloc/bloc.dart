@@ -1,7 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_test_sample/di/di.dart';
 import 'package:flutter_test_sample/domain/repositories/auth_repo.dart';
 
 import '../../../domain/models/project.dart';

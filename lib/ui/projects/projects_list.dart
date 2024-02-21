@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../di/di.dart';
 import '../../domain/models/project.dart';
 import '../widgets/accent_border.dart';
 import '../widgets/star_checkbox.dart';

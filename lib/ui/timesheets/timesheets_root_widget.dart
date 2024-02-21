@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_test_sample/domain/repositories/auth_repo.dart';
+import 'package:flutter_test_sample/ui/app.dart';
 import 'package:flutter_test_sample/ui/timesheets/timesheets_bloc/bloc.dart';
 import 'package:flutter_test_sample/ui/timesheets/timesheets_widgets.dart';
 import 'package:get_it/get_it.dart';
@@ -13,7 +15,11 @@ import '../widgets/menu_button.dart';
 
 class TimesheetsRootWidget extends StatelessWidget {
   TimesheetsRootWidget({super.key});
-  TimesheetsBloc bloc = TimesheetsBloc(GetIt.instance.get<TimersRepository>());
+
+  TimesheetsBloc bloc = TimesheetsBloc(
+    GetIt.instance.get<TimersRepository>(),
+    GetIt.instance.get<AuthRepository>(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +30,8 @@ class TimesheetsRootWidget extends StatelessWidget {
               centerTitle: false,
               actions: <Widget>[
                 MenuButton.plus(onPressed: () async {
-                  var resultOfNavigation = await context.push('/createTimer');
+                  var resultOfNavigation =
+                      await context.push(destinationCreateTimer);
                   if (resultOfNavigation == "refresh") {
                     bloc.add(TimesheetsRefresh());
                   }

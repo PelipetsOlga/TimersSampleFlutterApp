@@ -2,6 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_test_sample/data/models/time_sheet.dart';
 import 'package:flutter_test_sample/domain/models/task.dart';
 import 'package:flutter_test_sample/domain/models/time_sheet.dart';
+import 'package:pair/pair.dart';
 import 'dart:async';
 
 import '../../domain/models/project.dart';
@@ -71,6 +72,32 @@ class TimersRepositoryImpl implements TimersRepository {
     } catch (e) {
       return const Left(NetworkError());
     }
+  }
+
+  @override
+  Future<Either<AppError, Pair<List<TimeSheetModel>, List<TimeSheetModel>>>>
+      getTimeSheets() async {
+    if (timesheetsCache != null) {
+      return Right(_createPair(timesheetsCache!));
+    }
+    try {
+      List<TimeSheet> timesheets =
+          await api.getAllTimeSheets(authRepository.profile().id);
+      var result = timesheets.map((e) => _toTimesheetDomain(e)).toList();
+      timesheetsCache = result;
+      return Right(_createPair(timesheetsCache!));
+    } catch (e) {
+      return const Left(NetworkError());
+    }
+  }
+
+  Pair<List<TimeSheetModel>, List<TimeSheetModel>> _createPair(
+      List<TimeSheetModel> timesheets) {
+    var completedTimesheets =
+        timesheets.where((element) => element.timer.completed).toList();
+    var notCompletedTimesheets =
+        timesheets.where((element) => !element.timer.completed).toList();
+    return Pair(completedTimesheets, notCompletedTimesheets);
   }
 
   @override
