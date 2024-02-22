@@ -131,8 +131,8 @@ class _CreateTimerContentWidgetState extends State<CreateTimerContentWidget> {
               Row(
                 children: [
                   Checkbox(
-                    checkColor: Colors.white,
-                    activeColor: Colors.white.withOpacity(0.16),
+                    checkColor: Theme.of(context).colorScheme.onPrimary,
+                    activeColor: Theme.of(context).colorScheme.secondaryContainer,
                     value: isFavourite,
                     onChanged: (bool? value) {
                       setState(() {

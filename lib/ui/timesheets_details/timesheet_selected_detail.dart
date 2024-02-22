@@ -19,7 +19,7 @@ class TimesheetSelectedDetailsWidget extends StatelessWidget {
       child: Column(
         children: [
           Card(
-              color: Colors.white.withOpacity(0.08),
+              color: Theme.of(context).colorScheme.primaryContainer,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0),
@@ -69,7 +69,7 @@ class TimesheetSelectedDetailsWidget extends StatelessWidget {
                 ),
               )),
           Card(
-              color: Colors.white.withOpacity(0.08),
+              color: Theme.of(context).colorScheme.primaryContainer,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0),

@@ -32,6 +32,7 @@ ThemeData _lightTheme = ThemeData(
   colorScheme: ColorScheme.dark(
     brightness: Brightness.dark,
     background: Colors.transparent,
+    primaryContainer: Colors.white.withOpacity(0.08),
     secondaryContainer: Colors.white.withOpacity(0.16),
     tertiaryContainer: const Color(_backgroundColorDark),
     onTertiaryContainer: const Color(_backgroundColorLight),
@@ -60,6 +61,7 @@ ThemeData _darkTheme = ThemeData(
   colorScheme: ColorScheme.dark(
     brightness: Brightness.dark,
     background: Colors.transparent,
+    primaryContainer: Colors.white.withOpacity(0.08),
     secondaryContainer: Colors.white.withOpacity(0.16),
     tertiaryContainer: Colors.black,
     onTertiaryContainer: Colors.black,

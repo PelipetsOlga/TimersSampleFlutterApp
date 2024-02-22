@@ -6,7 +6,7 @@ InputDecoration getSpinnerInputDecoration(
     suffixIcon: readOnly ? const Icon(Icons.keyboard_arrow_down) : null,
     iconColor: Colors.white,
     disabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white.withOpacity(0.16)),
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondaryContainer),
     ),
     hintText: hintText,
     errorBorder: OutlineInputBorder(
@@ -15,13 +15,13 @@ InputDecoration getSpinnerInputDecoration(
     hintStyle:
         Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.white),
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white.withOpacity(0.16)),
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondaryContainer),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white.withOpacity(0.16)),
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondaryContainer),
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.white.withOpacity(0.16)),
+      borderSide: BorderSide(color: Theme.of(context).colorScheme.secondaryContainer),
     ),
     // labelText: 'Enter project name',
   );
