@@ -2,10 +2,7 @@
 
 Test task: Flutter timer application with specific UI requirements
 
-
-
-https://github.com/PelipetsOlga/TimersSampleFlutterApp/assets/13727561/b82e0676-a279-4844-9d57-c9ddf5f51fcf
-
+https://github.com/PelipetsOlga/TimersSampleFlutterApp/assets/13727561/c04b58f4-a666-4b34-b2e1-3fbade6253aa
 
 
 ## Getting Started
