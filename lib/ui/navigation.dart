@@ -7,7 +7,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => ThemeWrapperWidget(const RootWidget()),
+      builder: (context, state) => ThemeWrapperWidget(const RootSampleWidget()),
     ),
     GoRoute(
       path: destinationCreateTimer,

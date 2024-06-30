@@ -7,14 +7,14 @@ import '../timesheets/timesheets_root_widget.dart';
 
 part 'nav_bar_widget.dart';
 
-class RootWidget extends StatefulWidget {
-  const RootWidget({super.key});
+class RootSampleWidget extends StatefulWidget {
+  const RootSampleWidget({super.key});
 
   @override
-  State<RootWidget> createState() => _RootWidgetState();
+  State<RootSampleWidget> createState() => _RootWidgetState();
 }
 
-class _RootWidgetState extends State<RootWidget> {
+class _RootWidgetState extends State<RootSampleWidget> {
   int currentPageIndex = 0;
 
   @override

@@ -88,8 +88,8 @@ ThemeData _darkTheme = ThemeData(
 var _elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
     elevation: 0,
-    primary: Colors.white.withOpacity(0.16),
-    onPrimary: Colors.white,
+    // primary: Colors.white.withOpacity(0.16),
+    // onPrimary: Colors.white,
     foregroundColor: Colors.white.withOpacity(0.16),
     backgroundColor: Colors.white.withOpacity(0.16),
     shape: RoundedRectangleBorder(
