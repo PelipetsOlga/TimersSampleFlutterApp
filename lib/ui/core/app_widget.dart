@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
-    // _makeScreenshots();
+    _makeScreenshots(context);
     return RepaintBoundary(
       key: previewContainer,
       child: GestureDetector(
@@ -64,10 +64,10 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  void _makeScreenshots() async {
+  void _makeScreenshots(BuildContext context) async {
     Timer.periodic(const Duration(seconds: 3), (timer) {
       print(timer.tick);
-      takeScreenShot();
+      takeScreenShot(context);
       counter--;
       if (counter == 0) {
         print('Cancel timer');
@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
     });
   }
 
-  Future<void> takeScreenShot() async {
+  Future<void> takeScreenShot(BuildContext context) async {
     int startTime = _makeTimeStamp();
     final boundary = previewContainer.currentContext!.findRenderObject()
         as RenderRepaintBoundary;
@@ -93,9 +93,24 @@ class MyApp extends StatelessWidget {
     int imageDifTime = imageTime - startTime;
     int difTime = endTime - startTime;
     print("imageDifTime=$imageDifTime, difTime=$difTime");
+    var rect = context.globalPaintBounds;
+    print("rect=$rect");
   }
 }
 
 int _makeTimeStamp() {
   return DateTime.now().millisecondsSinceEpoch;
+}
+
+extension GlobalPaintBounds on BuildContext {
+  Rect? get globalPaintBounds {
+    final renderObject = findRenderObject();
+    final translation = renderObject?.getTransformTo(null).getTranslation();
+    if (translation != null && renderObject?.paintBounds != null) {
+      final offset = Offset(translation.x, translation.y);
+      return renderObject!.paintBounds.shift(offset);
+    } else {
+      return null;
+    }
+  }
 }
