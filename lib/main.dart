@@ -8,6 +8,6 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   initDI();
   Analytics().log("main start");
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
