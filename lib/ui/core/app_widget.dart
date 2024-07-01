@@ -17,8 +17,51 @@ class MyApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
-    _makeScreenshots();
-    return RepaintBoundary(key: previewContainer, child: const AppTheme());
+    // _makeScreenshots();
+    return RepaintBoundary(
+      key: previewContainer,
+      child: GestureDetector(
+        child: const AppTheme(),
+        onTap: () {
+          print("parent onTap");
+        },
+        onTapDown: (details) {
+          final glPos = details.globalPosition;
+          final loPos = details.localPosition;
+          print("parent onTapDown, details=$details , glPos=$glPos, loPos=$loPos");
+        },
+        // onVerticalDragDown: (details){
+        //   print("parent onVerticalDragDown $details");
+        // },
+        // onVerticalDragStart: (details){
+        //   print("parent onVerticalDragStart $details");
+        // },
+        // onVerticalDragEnd: (details){
+        //   print("parent onVerticalDragEnd $details");
+        // },
+        // onHorizontalDragStart: (details){
+        //   print("parent onHorizontalDragStart $details");
+        // },
+        // onHorizontalDragEnd: (details){
+        //   print("parent onHorizontalDragEnd $details");
+        // },
+        // onHorizontalDragDown: (details){
+        //   print("parent onHorizontalDragDown $details");
+        // },
+        onPanDown: (details){
+          print("parent onPanDown $details");
+        },
+        onPanStart: (details){
+          print("parent onPanStart $details");
+        },
+        onPanEnd: (details){
+          print("parent onPanEnd $details");
+        },
+        onPanUpdate: (details){
+          print("parent onPanUpdate$details");
+        },
+      ),
+    );
   }
 
   void _makeScreenshots() async {
@@ -34,11 +77,11 @@ class MyApp extends StatelessWidget {
   }
 
   Future<void> takeScreenShot() async {
-    int startTime=_makeTimeStamp();
+    int startTime = _makeTimeStamp();
     final boundary = previewContainer.currentContext!.findRenderObject()
         as RenderRepaintBoundary;
     final image = await boundary.toImage();
-    int imageTime=_makeTimeStamp();
+    int imageTime = _makeTimeStamp();
     final directory = (await getApplicationDocumentsDirectory()).path;
     print("directory=$directory");
     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
@@ -46,9 +89,9 @@ class MyApp extends StatelessWidget {
     final imgFile = File('$directory/screenshot_$counter.png');
     imgFile.writeAsBytes(pngBytes!);
     print("imgFile=${imgFile.path}");
-    int endTime=_makeTimeStamp();
-    int imageDifTime=imageTime-startTime;
-    int difTime=endTime-startTime;
+    int endTime = _makeTimeStamp();
+    int imageDifTime = imageTime - startTime;
+    int difTime = endTime - startTime;
     print("imageDifTime=$imageDifTime, difTime=$difTime");
   }
 }
