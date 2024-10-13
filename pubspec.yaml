@@ -48,6 +48,7 @@ dependencies:
   logger: ^2.4.0
   timer_count_down: ^2.2.2
   pair: ^0.1.2
+  cux_analytics_sdk: ^0.0.1
 
 dev_dependencies:
   flutter_test:

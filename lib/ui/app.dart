@@ -1,3 +1,4 @@
+import 'package:cux_analytics_sdk/analytics_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test_sample/ui/timesheet_create/create_timesheet.dart';
@@ -42,6 +43,7 @@ class _AppThemeState extends State<AppTheme> {
       themeMode: themeMode,
       theme: _lightTheme,
       darkTheme: _darkTheme,
+      onNavigationNotification: CuxAnalytics.onNavigationNotification,
     );
   }
 }
