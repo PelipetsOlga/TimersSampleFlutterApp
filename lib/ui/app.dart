@@ -15,7 +15,6 @@ part 'navigation.dart';
 class AppTheme extends StatefulWidget {
   const AppTheme({super.key});
 
-
   @override
   State<AppTheme> createState() => _AppThemeState();
 }
@@ -43,7 +42,8 @@ class _AppThemeState extends State<AppTheme> {
       themeMode: themeMode,
       theme: _lightTheme,
       darkTheme: _darkTheme,
-      onNavigationNotification: CuxAnalytics.onNavigationNotification,
+      onNavigationNotification:
+          RouterNavigationListener(rootWidget: this).onNavigationNotification,
     );
   }
 }

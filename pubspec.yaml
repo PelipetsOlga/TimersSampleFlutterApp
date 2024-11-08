@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.5.0 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -48,7 +48,7 @@ dependencies:
   logger: ^2.4.0
   timer_count_down: ^2.2.2
   pair: ^0.1.2
-  cux_analytics_sdk: ^0.0.1
+  cux_analytics_sdk: ^0.0.3
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +61,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^4.0.0
   icons_launcher: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
