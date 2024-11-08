@@ -43,7 +43,8 @@ class _AppThemeState extends State<AppTheme> {
       themeMode: themeMode,
       theme: _lightTheme,
       darkTheme: _darkTheme,
-      onNavigationNotification: CuxAnalytics.onNavigationNotification,
+      onNavigationNotification:
+          RouterNavigationListener(rootWidget: this).onNavigationNotification,
     );
   }
 }
